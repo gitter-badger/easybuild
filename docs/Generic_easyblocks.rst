@@ -1,4 +1,5 @@
-verview of generic easyblocks
+==============================
+Overview of generic easyblocks
 ==============================
 
 .. contents::
@@ -770,6 +771,3 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 * ``build_step`` - No build procedure.
 * ``configure_step`` - Configure Python package build. (inherited)
 * ``test_step`` - Test the built Python package. (inherited)
-
-
-
