@@ -1,5 +1,4 @@
-
-Overview of generic easyblocks
+verview of generic easyblocks
 ==============================
 
 .. contents::
@@ -20,7 +19,6 @@ Customised steps in ``BinariesTarball`` easyblock
 * ``build_step`` - Dummy build method: nothing to build (inherited)
 * ``configure_step`` - Dummy configure method (inherited)
 * ``test_step`` - Dummy configure method (inherited)
-* ``install_step`` - Install by copying unzipped binaries to 'bin' subdir of installation dir, and fixing permissions. (inherited)
 
 .. Binary:
 
@@ -48,7 +46,6 @@ Customised steps in ``Binary`` easyblock
 * ``build_step`` - No compilation, this is binary software
 * ``configure_step`` - No configuration, this is binary software
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
-* ``install_step`` - Copy all files in build directory to the install directory (inherited)
 
 
 Example for ``Binary`` easyblock
@@ -94,7 +91,6 @@ Customised steps in ``Bundle`` easyblock
 * ``build_step`` - Do nothing.
 * ``configure_step`` - Do nothing.
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
-* ``install_step`` - Do nothing. (inherited)
 
 
 Example for ``Bundle`` easyblock
@@ -151,8 +147,6 @@ Customised steps in ``CMakeMake`` easyblock
 * ``configure_step`` - Configure build using cmake (inherited)
 * ``test_step`` - Test the compilation
         - default: None (inherited)
-* ``install_step`` - Create the installation in correct location
-        - typical: make install (inherited)
 
 
 Example for ``CMakeMake`` easyblock
@@ -228,7 +222,6 @@ Customised steps in ``CMakePythonPackage`` easyblock
 * ``build_step`` - Build Python package with cmake
 * ``configure_step`` - Main configuration using cmake
 * ``test_step`` - Main configuration using cmake
-* ``install_step`` - Install with cmake install
 
 .. CmdCp:
 
@@ -260,7 +253,6 @@ Customised steps in ``CmdCp`` easyblock
 * ``build_step`` - Build by running the command with the inputfiles
 * ``configure_step`` - Configure build if required (inherited)
 * ``test_step`` - Configure build if required (inherited)
-* ``install_step`` - Install by copying specified files and directories. (inherited)
 
 .. ConfigureMake:
 
@@ -291,8 +283,6 @@ Customised steps in ``ConfigureMake`` easyblock
         - typically ./configure --prefix=/install/path style
 * ``test_step`` - Test the compilation
         - default: None
-* ``install_step`` - Create the installation in correct location
-        - typical: make install
 
 
 Example for ``ConfigureMake`` easyblock
@@ -355,7 +345,6 @@ Customised steps in ``ConfigureMakePythonPackage`` easyblock
 * ``build_step`` - Build Python package with 'make'.
 * ``configure_step`` - Configure build using 'python configure'.
 * ``test_step`` - Test Python package.
-* ``install_step`` - Install with 'make install'.
 
 
 Example for ``ConfigureMakePythonPackage`` easyblock
@@ -423,7 +412,6 @@ Customised steps in ``FortranPythonPackage`` easyblock
 * ``build_step`` - Customize the build step by adding compiler-specific flags to the build command.
 * ``configure_step`` - Configure Python package build. (inherited)
 * ``test_step`` - Test the built Python package. (inherited)
-* ``install_step`` - Install Python package to a custom path using setup.py (inherited)
 
 .. IntelBase:
 
@@ -453,11 +441,6 @@ Customised steps in ``IntelBase`` easyblock
 * ``build_step`` - Binary installation files, so no building.
 * ``configure_step`` - Configure: handle license file and clean home dir.
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
-* ``install_step`` - Actual installation
-
-        - create silent cfg file
-        - set environment parameters
-        - execute command (inherited)
 
 .. JAR:
 
@@ -484,7 +467,6 @@ Customised steps in ``JAR`` easyblock
 * ``build_step`` - No compilation, this is binary software (inherited)
 * ``configure_step`` - No configuration, this is binary software (inherited)
 * ``test_step`` - No configuration, this is binary software (inherited)
-* ``install_step`` - Copy all files in build directory to the install directory (inherited)
 
 .. MakeCp:
 
@@ -516,7 +498,6 @@ Customised steps in ``MakeCp`` easyblock
 * ``configure_step`` - Configure build if required (inherited)
 * ``test_step`` - Test the compilation
         - default: None (inherited)
-* ``install_step`` - Install by copying specified files and directories. (inherited)
 
 .. PackedBinary:
 
@@ -544,7 +525,6 @@ Customised steps in ``PackedBinary`` easyblock
 * ``build_step`` - No compilation, this is binary software (inherited)
 * ``configure_step`` - No configuration, this is binary software (inherited)
 * ``test_step`` - No configuration, this is binary software (inherited)
-* ``install_step`` - Copy all unpacked source directories to install directory, one-by-one. (inherited)
 
 .. PerlModule:
 
@@ -571,7 +551,6 @@ Customised steps in ``PerlModule`` easyblock
 * ``build_step`` - No separate build procedure for Perl modules.
 * ``configure_step`` - No separate configuration for Perl modules.
 * ``test_step`` - No separate (standard) test procedure for Perl modules.
-* ``install_step`` - Run install procedure for Perl modules.
 
 .. PythonPackage:
 
@@ -598,7 +577,6 @@ Customised steps in ``PythonPackage`` easyblock
 * ``build_step`` - Build Python package using setup.py
 * ``configure_step`` - Configure Python package build.
 * ``test_step`` - Test the built Python package.
-* ``install_step`` - Install Python package to a custom path using setup.py
 
 .. RPackage:
 
@@ -624,7 +602,6 @@ Customised steps in ``RPackage`` easyblock
 * ``build_step`` - No separate build step for R packages.
 * ``configure_step`` - No configuration for installing R packages.
 * ``test_step`` - No configuration for installing R packages.
-* ``install_step`` - Install procedure for R packages.
 
 .. Rpm:
 
@@ -657,7 +634,6 @@ Customised steps in ``Rpm`` easyblock
 * ``build_step`` - No compilation, this is binary software (inherited)
 * ``configure_step`` - Custom configuration procedure for RPMs: rebuild RPMs for relocation if required. (inherited)
 * ``test_step`` - Custom configuration procedure for RPMs: rebuild RPMs for relocation if required. (inherited)
-* ``install_step`` - Custom installation procedure for RPMs into a custom prefix. (inherited)
 
 .. RubyGem:
 
@@ -683,7 +659,6 @@ Customised steps in ``RubyGem`` easyblock
 * ``build_step`` - No separate build procedure for Ruby Gems.
 * ``configure_step`` - No separate configuration for Ruby Gems.
 * ``test_step`` - No separate (standard) test procedure for Ruby Gems.
-* ``install_step`` - Install Ruby Gems using gem package manager
 
 .. Tarball:
 
@@ -701,7 +676,6 @@ Customised steps in ``Tarball`` easyblock
 * ``build_step`` - Dummy build method: nothing to build
 * ``configure_step`` - Dummy configure method
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
-* ``install_step`` - Install by copying from specified source directory (or 'start_dir' if not specified). (inherited)
 
 .. Toolchain:
 
@@ -718,7 +692,6 @@ Customised steps in ``Toolchain`` easyblock
 * ``build_step`` - Do nothing. (inherited)
 * ``configure_step`` - Do nothing. (inherited)
 * ``test_step`` - Do nothing. (inherited)
-* ``install_step`` - Do nothing. (inherited)
 
 .. VSCPythonPackage:
 
@@ -745,7 +718,6 @@ Customised steps in ``VSCPythonPackage`` easyblock
 * ``build_step`` - No build procedure. (inherited)
 * ``configure_step`` - No build procedure. (inherited)
 * ``test_step`` - No build procedure. (inherited)
-* ``install_step`` - Custom install procedure to skip selection of python package versions. (inherited)
 
 .. VersionIndependendPythonPackage:
 
@@ -772,7 +744,6 @@ Customised steps in ``VersionIndependendPythonPackage`` easyblock
 * ``build_step`` - No build procedure. (inherited)
 * ``configure_step`` - No build procedure. (inherited)
 * ``test_step`` - No build procedure. (inherited)
-* ``install_step`` - Custom install procedure to skip selection of python package versions. (inherited)
 
 .. VersionIndependentPythonPackage:
 
@@ -799,5 +770,6 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 * ``build_step`` - No build procedure.
 * ``configure_step`` - Configure Python package build. (inherited)
 * ``test_step`` - Test the built Python package. (inherited)
-* ``install_step`` - Custom install procedure to skip selection of python package versions. (inherited)
+
+
 
