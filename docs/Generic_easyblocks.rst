@@ -1,4 +1,4 @@
-verview of generic easyblocks
+Overview of generic easyblocks
 ==============================
 
 .. contents::
