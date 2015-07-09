@@ -1,3 +1,4 @@
+
 Overview of generic easyblocks
 ==============================
 
@@ -799,5 +800,4 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 * ``configure_step`` - Configure Python package build. (inherited)
 * ``test_step`` - Test the built Python package. (inherited)
 * ``install_step`` - Custom install procedure to skip selection of python package versions. (inherited)
-
 
