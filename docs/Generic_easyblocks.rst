@@ -6,6 +6,7 @@ Overview of generic easyblocks
     :depth: 1
 
 .. BinariesTarball:
+
 ``BinariesTarball``
 ===================
 
@@ -21,6 +22,7 @@ Customised steps in ``BinariesTarball`` easyblock
 * ``test_step`` - Dummy configure method (inherited)
 
 .. Binary:
+
 ``Binary``
 ==========
 
@@ -76,6 +78,7 @@ Example for ``Binary`` easyblock
 
 
 .. Bundle:
+
 ``Bundle``
 ==========
 
@@ -116,6 +119,7 @@ Example for ``Bundle`` easyblock
 
 
 .. CMakeMake:
+
 ``CMakeMake``
 =============
 
@@ -184,6 +188,7 @@ Example for ``CMakeMake`` easyblock
 
 
 .. CMakePythonPackage:
+
 ``CMakePythonPackage``
 ======================
 
@@ -220,6 +225,7 @@ Customised steps in ``CMakePythonPackage`` easyblock
 * ``test_step`` - Main configuration using cmake
 
 .. CmdCp:
+
 ``CmdCp``
 =========
 
@@ -250,6 +256,7 @@ Customised steps in ``CmdCp`` easyblock
 * ``test_step`` - Configure build if required (inherited)
 
 .. ConfigureMake:
+
 ``ConfigureMake``
 =================
 
@@ -307,6 +314,7 @@ Example for ``ConfigureMake`` easyblock
 
 
 .. ConfigureMakePythonPackage:
+
 ``ConfigureMakePythonPackage``
 ==============================
 
@@ -381,6 +389,7 @@ Example for ``ConfigureMakePythonPackage`` easyblock
 
 
 .. FortranPythonPackage:
+
 ``FortranPythonPackage``
 ========================
 
@@ -406,6 +415,7 @@ Customised steps in ``FortranPythonPackage`` easyblock
 * ``test_step`` - Test the built Python package. (inherited)
 
 .. IntelBase:
+
 ``IntelBase``
 =============
 
@@ -434,6 +444,7 @@ Customised steps in ``IntelBase`` easyblock
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
 
 .. JAR:
+
 ``JAR``
 =======
 
@@ -459,6 +470,7 @@ Customised steps in ``JAR`` easyblock
 * ``test_step`` - No configuration, this is binary software (inherited)
 
 .. MakeCp:
+
 ``MakeCp``
 ==========
 
@@ -489,6 +501,7 @@ Customised steps in ``MakeCp`` easyblock
         - default: None (inherited)
 
 .. PackedBinary:
+
 ``PackedBinary``
 ================
 
@@ -515,6 +528,7 @@ Customised steps in ``PackedBinary`` easyblock
 * ``test_step`` - No configuration, this is binary software (inherited)
 
 .. PerlModule:
+
 ``PerlModule``
 ==============
 
@@ -540,6 +554,7 @@ Customised steps in ``PerlModule`` easyblock
 * ``test_step`` - No separate (standard) test procedure for Perl modules.
 
 .. PythonPackage:
+
 ``PythonPackage``
 =================
 
@@ -565,6 +580,7 @@ Customised steps in ``PythonPackage`` easyblock
 * ``test_step`` - Test the built Python package.
 
 .. RPackage:
+
 ``RPackage``
 ============
 
@@ -589,6 +605,7 @@ Customised steps in ``RPackage`` easyblock
 * ``test_step`` - No configuration for installing R packages.
 
 .. Rpm:
+
 ``Rpm``
 =======
 
@@ -620,6 +637,7 @@ Customised steps in ``Rpm`` easyblock
 * ``test_step`` - Custom configuration procedure for RPMs: rebuild RPMs for relocation if required. (inherited)
 
 .. RubyGem:
+
 ``RubyGem``
 ===========
 
@@ -644,6 +662,7 @@ Customised steps in ``RubyGem`` easyblock
 * ``test_step`` - No separate (standard) test procedure for Ruby Gems.
 
 .. Tarball:
+
 ``Tarball``
 ===========
 
@@ -660,6 +679,7 @@ Customised steps in ``Tarball`` easyblock
 * ``test_step`` - Run unit tests provided by software (if any). (inherited)
 
 .. Toolchain:
+
 ``Toolchain``
 =============
 
@@ -675,6 +695,7 @@ Customised steps in ``Toolchain`` easyblock
 * ``test_step`` - Do nothing. (inherited)
 
 .. VSCPythonPackage:
+
 ``VSCPythonPackage``
 ====================
 
@@ -700,6 +721,7 @@ Customised steps in ``VSCPythonPackage`` easyblock
 * ``test_step`` - No build procedure. (inherited)
 
 .. VersionIndependendPythonPackage:
+
 ``VersionIndependendPythonPackage``
 ===================================
 
@@ -725,6 +747,7 @@ Customised steps in ``VersionIndependendPythonPackage`` easyblock
 * ``test_step`` - No build procedure. (inherited)
 
 .. VersionIndependentPythonPackage:
+
 ``VersionIndependentPythonPackage``
 ===================================
 
@@ -748,5 +771,3 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 * ``build_step`` - No build procedure.
 * ``configure_step`` - Configure Python package build. (inherited)
 * ``test_step`` - Test the built Python package. (inherited)
-
-
