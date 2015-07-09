@@ -2,6 +2,9 @@
 Overview of generic easyblocks
 ==============================
 
+.. contents::
+    :depth: 1
+
 .. BinariesTarball:
 ``BinariesTarball``
 ===================
