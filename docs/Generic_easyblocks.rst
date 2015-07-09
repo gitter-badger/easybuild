@@ -3,7 +3,7 @@ Overview of generic easyblocks
 ==============================
 
 .. contents::
-    :depth: 1
+    :depth: 2
 
 .. BinariesTarball:
 
