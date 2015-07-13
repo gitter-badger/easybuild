@@ -40,22 +40,6 @@ Customised steps in ``Binary`` easyblock
 * ``configure_step`` - No configuration, this is binary software
 * ``test_step`` - No configuration, this is binary software
 
-.. _Tarball:
-
-``Tarball``
-===========
-
-(derives from EasyBlock)
-
-Precompiled software supplied as a tarball:
-    - will unpack binary and copy it to the install dir
-
-Customised steps in ``Tarball`` easyblock
------------------------------------------
-* ``build_step`` - Dummy build method: nothing to build
-* ``configure_step`` - Dummy configure method
-* ``test_step`` - Dummy configure method
-
 .. _Bundle:
 
 ``Bundle``
@@ -70,35 +54,6 @@ Customised steps in ``Bundle`` easyblock
 * ``build_step`` - Do nothing.
 * ``configure_step`` - Do nothing.
 * ``test_step`` - Do nothing.
-
-.. _ConfigureMake:
-
-``ConfigureMake``
-=================
-
-(derives from EasyBlock)
-
-Support for building and installing applications with configure/make/make install
-
-Extra easyconfig parameters specific to ``ConfigureMake`` easyblock
--------------------------------------------------------------------
-
-========================   =================================================   ===============
-easyconfig parameter       description                                         default value
-========================   =================================================   ===============
-``configure_cmd_prefix``   Prefix to be glued before ./configure               ``""``
-``prefix_opt``             Prefix command line option for configure script     ``"--prefix="``
-``tar_config_opts``        Override tar settings as determined by configure.   ``False``
-========================   =================================================   ===============
-
-Customised steps in ``ConfigureMake`` easyblock
------------------------------------------------
-* ``build_step`` - Start the actual build
-        - typical: make -j X
-* ``configure_step`` - Configure step
-        - typically ./configure --prefix=/install/path style
-* ``test_step`` - Test the compilation
-        - default: None
 
 .. _CMakeMake:
 
@@ -163,58 +118,6 @@ Customised steps in ``CMakePythonPackage`` easyblock
 * ``configure_step`` - Main configuration using cmake
 * ``test_step`` - Main configuration using cmake
 
-.. _PythonPackage:
-
-``PythonPackage``
-=================
-
-(derives from ExtensionEasyBlock)
-
-Builds and installs a Python package, and provides a dedicated module file.
-
-Extra easyconfig parameters specific to ``PythonPackage`` easyblock
--------------------------------------------------------------------
-
-====================   ==================================   =============
-easyconfig parameter   description                          default value
-====================   ==================================   =============
-``runtest``            Run unit tests.                      ``True``
-``options``            Dictionary with extension options.   ``{}``
-====================   ==================================   =============
-
-Customised steps in ``PythonPackage`` easyblock
------------------------------------------------
-* ``build_step`` - Build Python package using setup.py
-* ``configure_step`` - Configure Python package build.
-* ``test_step`` - Test the built Python package.
-
-.. _MakeCp:
-
-``MakeCp``
-==========
-
-(derives from :ref:`ConfigureMake`)
-
-Software with no configure and no make install step.
-
-Extra easyconfig parameters specific to ``MakeCp`` easyblock
-------------------------------------------------------------
-
-========================   =================================================   ===============
-easyconfig parameter       description                                         default value
-========================   =================================================   ===============
-``files_to_copy``          List of files or dirs to copy                       ``[]``
-``configure_cmd_prefix``   Prefix to be glued before ./configure               ``""``
-``prefix_opt``             Prefix command line option for configure script     ``"--prefix="``
-``tar_config_opts``        Override tar settings as determined by configure.   ``False``
-``with_configure``         Run configure script before building                ``False``
-========================   =================================================   ===============
-
-Customised steps in ``MakeCp`` easyblock
-----------------------------------------
-* ``configure_step`` - Configure build if required
-* ``test_step`` - Configure build if required
-
 .. _CmdCp:
 
 ``CmdCp``
@@ -244,6 +147,35 @@ Customised steps in ``CmdCp`` easyblock
 * ``build_step`` - Build by running the command with the inputfiles
 * ``configure_step`` - Build by running the command with the inputfiles
 * ``test_step`` - Build by running the command with the inputfiles
+
+.. _ConfigureMake:
+
+``ConfigureMake``
+=================
+
+(derives from EasyBlock)
+
+Support for building and installing applications with configure/make/make install
+
+Extra easyconfig parameters specific to ``ConfigureMake`` easyblock
+-------------------------------------------------------------------
+
+========================   =================================================   ===============
+easyconfig parameter       description                                         default value
+========================   =================================================   ===============
+``configure_cmd_prefix``   Prefix to be glued before ./configure               ``""``
+``prefix_opt``             Prefix command line option for configure script     ``"--prefix="``
+``tar_config_opts``        Override tar settings as determined by configure.   ``False``
+========================   =================================================   ===============
+
+Customised steps in ``ConfigureMake`` easyblock
+-----------------------------------------------
+* ``build_step`` - Start the actual build
+        - typical: make -j X
+* ``configure_step`` - Configure step
+        - typically ./configure --prefix=/install/path style
+* ``test_step`` - Test the compilation
+        - default: None
 
 .. _ConfigureMakePythonPackage:
 
@@ -350,6 +282,33 @@ easyconfig parameter   description                                              
 ``install_cmd``        Install command to be used.                                       ``None``
 ====================   ===============================================================   =============
 
+.. _MakeCp:
+
+``MakeCp``
+==========
+
+(derives from :ref:`ConfigureMake`)
+
+Software with no configure and no make install step.
+
+Extra easyconfig parameters specific to ``MakeCp`` easyblock
+------------------------------------------------------------
+
+========================   =================================================   ===============
+easyconfig parameter       description                                         default value
+========================   =================================================   ===============
+``files_to_copy``          List of files or dirs to copy                       ``[]``
+``configure_cmd_prefix``   Prefix to be glued before ./configure               ``""``
+``prefix_opt``             Prefix command line option for configure script     ``"--prefix="``
+``tar_config_opts``        Override tar settings as determined by configure.   ``False``
+``with_configure``         Run configure script before building                ``False``
+========================   =================================================   ===============
+
+Customised steps in ``MakeCp`` easyblock
+----------------------------------------
+* ``configure_step`` - Configure build if required
+* ``test_step`` - Configure build if required
+
 .. _PackedBinary:
 
 ``PackedBinary``
@@ -394,6 +353,31 @@ Customised steps in ``PerlModule`` easyblock
 * ``build_step`` - No separate build procedure for Perl modules.
 * ``configure_step`` - No separate configuration for Perl modules.
 * ``test_step`` - No separate (standard) test procedure for Perl modules.
+
+.. _PythonPackage:
+
+``PythonPackage``
+=================
+
+(derives from ExtensionEasyBlock)
+
+Builds and installs a Python package, and provides a dedicated module file.
+
+Extra easyconfig parameters specific to ``PythonPackage`` easyblock
+-------------------------------------------------------------------
+
+====================   ==================================   =============
+easyconfig parameter   description                          default value
+====================   ==================================   =============
+``runtest``            Run unit tests.                      ``True``
+``options``            Dictionary with extension options.   ``{}``
+====================   ==================================   =============
+
+Customised steps in ``PythonPackage`` easyblock
+-----------------------------------------------
+* ``build_step`` - Build Python package using setup.py
+* ``configure_step`` - Configure Python package build.
+* ``test_step`` - Test the built Python package.
 
 .. _RPackage:
 
@@ -473,6 +457,22 @@ Customised steps in ``RubyGem`` easyblock
 * ``configure_step`` - No separate configuration for Ruby Gems.
 * ``test_step`` - No separate (standard) test procedure for Ruby Gems.
 
+.. _Tarball:
+
+``Tarball``
+===========
+
+(derives from EasyBlock)
+
+Precompiled software supplied as a tarball:
+    - will unpack binary and copy it to the install dir
+
+Customised steps in ``Tarball`` easyblock
+-----------------------------------------
+* ``build_step`` - Dummy build method: nothing to build
+* ``configure_step`` - Dummy configure method
+* ``test_step`` - Dummy configure method
+
 .. _Toolchain:
 
 ``Toolchain``
@@ -481,6 +481,44 @@ Customised steps in ``RubyGem`` easyblock
 (derives from :ref:`Bundle`)
 
 Compiler toolchain: generate module file only, nothing to build/install
+
+.. _VSCPythonPackage:
+
+``VSCPythonPackage``
+====================
+
+(derives from :ref:`VersionIndependentPythonPackage`)
+
+Support for install VSC Python packages.
+
+Extra easyconfig parameters specific to ``VSCPythonPackage`` easyblock
+----------------------------------------------------------------------
+
+====================   ==================================   =============
+easyconfig parameter   description                          default value
+====================   ==================================   =============
+``runtest``            Run unit tests.                      ``True``
+``options``            Dictionary with extension options.   ``{}``
+====================   ==================================   =============
+
+.. _VersionIndependendPythonPackage:
+
+``VersionIndependendPythonPackage``
+===================================
+
+(derives from :ref:`VersionIndependentPythonPackage`)
+
+No longer supported class for building/installing python packages without requiring a specific python package.
+
+Extra easyconfig parameters specific to ``VersionIndependendPythonPackage`` easyblock
+-------------------------------------------------------------------------------------
+
+====================   ==================================   =============
+easyconfig parameter   description                          default value
+====================   ==================================   =============
+``runtest``            Run unit tests.                      ``True``
+``options``            Dictionary with extension options.   ``{}``
+====================   ==================================   =============
 
 .. _VersionIndependentPythonPackage:
 
@@ -506,42 +544,4 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 * ``build_step`` - No build procedure.
 * ``configure_step`` - No build procedure.
 * ``test_step`` - No build procedure.
-
-.. _VersionIndependendPythonPackage:
-
-``VersionIndependendPythonPackage``
-===================================
-
-(derives from :ref:`VersionIndependentPythonPackage`)
-
-No longer supported class for building/installing python packages without requiring a specific python package.
-
-Extra easyconfig parameters specific to ``VersionIndependendPythonPackage`` easyblock
--------------------------------------------------------------------------------------
-
-====================   ==================================   =============
-easyconfig parameter   description                          default value
-====================   ==================================   =============
-``runtest``            Run unit tests.                      ``True``
-``options``            Dictionary with extension options.   ``{}``
-====================   ==================================   =============
-
-.. _VSCPythonPackage:
-
-``VSCPythonPackage``
-====================
-
-(derives from :ref:`VersionIndependentPythonPackage`)
-
-Support for install VSC Python packages.
-
-Extra easyconfig parameters specific to ``VSCPythonPackage`` easyblock
-----------------------------------------------------------------------
-
-====================   ==================================   =============
-easyconfig parameter   description                          default value
-====================   ==================================   =============
-``runtest``            Run unit tests.                      ``True``
-``options``            Dictionary with extension options.   ``{}``
-====================   ==================================   =============
 
