@@ -115,6 +115,7 @@ Appendices
 .. toctree::
     :maxdepth: 1
 
+* :ref:`API documentation <api>`
 * :ref:`Documentation changelog <changelog>`
 * :ref:`EasyBuild release notes <release_notes>`
 * :ref:`Search <search>`
