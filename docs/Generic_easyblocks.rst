@@ -4,6 +4,8 @@ Overview of generic easyblocks
 
 .. contents::
     :depth: 2
+    :local:
+    :backlinks: top
 
 .. _BinariesTarball:
 
@@ -13,6 +15,10 @@ Overview of generic easyblocks
 (derives from :ref:`Tarball`)
 
 Support for installing a tarball of binaries
+
+Customised steps in ``BinariesTarball`` easyblock
+-------------------------------------------------
+* ``install_step`` - Install by copying unzipped binaries to 'bin' subdir of installation dir, and fixing permissions.
 
 .. _Binary:
 
@@ -38,7 +44,7 @@ Customised steps in ``Binary`` easyblock
 ----------------------------------------
 * ``build_step`` - No compilation, this is binary software
 * ``configure_step`` - No configuration, this is binary software
-* ``test_step`` - No configuration, this is binary software
+* ``install_step`` - Copy all files in build directory to the install directory
 
 .. _Bundle:
 
@@ -53,7 +59,7 @@ Customised steps in ``Bundle`` easyblock
 ----------------------------------------
 * ``build_step`` - Do nothing.
 * ``configure_step`` - Do nothing.
-* ``test_step`` - Do nothing.
+* ``install_step`` - Do nothing.
 
 .. _CMakeMake:
 
@@ -80,7 +86,7 @@ easyconfig parameter       description                                          
 Customised steps in ``CMakeMake`` easyblock
 -------------------------------------------
 * ``configure_step`` - Configure build using cmake
-* ``test_step`` - Configure build using cmake
+* ``install_step`` - Configure build using cmake
 
 .. _CMakePythonPackage:
 
@@ -116,7 +122,7 @@ Customised steps in ``CMakePythonPackage`` easyblock
 ----------------------------------------------------
 * ``build_step`` - Build Python package with cmake
 * ``configure_step`` - Main configuration using cmake
-* ``test_step`` - Main configuration using cmake
+* ``install_step`` - Install with cmake install
 
 .. _CmdCp:
 
@@ -146,7 +152,7 @@ Customised steps in ``CmdCp`` easyblock
 ---------------------------------------
 * ``build_step`` - Build by running the command with the inputfiles
 * ``configure_step`` - Build by running the command with the inputfiles
-* ``test_step`` - Build by running the command with the inputfiles
+* ``install_step`` - Build by running the command with the inputfiles
 
 .. _ConfigureMake:
 
@@ -168,14 +174,25 @@ easyconfig parameter       description                                         d
 ``tar_config_opts``        Override tar settings as determined by configure.   ``False``
 ========================   =================================================   ===============
 
+Commonly used easyconfig parameters with ``ConfigureMake`` easyblock
+--------------------------------------------------------------------
+====================   ================================================================
+easyconfig parameter   description
+====================   ================================================================
+configopts             Extra options passed to configure (default already has --prefix)
+buildopts              Extra options passed to make step (default already has -j X)
+installopts            Extra options for installation
+====================   ================================================================
+
+
 Customised steps in ``ConfigureMake`` easyblock
 -----------------------------------------------
 * ``build_step`` - Start the actual build
         - typical: make -j X
 * ``configure_step`` - Configure step
         - typically ./configure --prefix=/install/path style
-* ``test_step`` - Test the compilation
-        - default: None
+* ``install_step`` - Create the installation in correct location
+        - typical: make install
 
 .. _ConfigureMakePythonPackage:
 
@@ -208,7 +225,7 @@ Customised steps in ``ConfigureMakePythonPackage`` easyblock
 ------------------------------------------------------------
 * ``build_step`` - Build Python package with 'make'.
 * ``configure_step`` - Configure build using 'python configure'.
-* ``test_step`` - Test Python package.
+* ``install_step`` - Install with 'make install'.
 
 .. _FortranPythonPackage:
 
@@ -233,7 +250,7 @@ Customised steps in ``FortranPythonPackage`` easyblock
 ------------------------------------------------------
 * ``build_step`` - Customize the build step by adding compiler-specific flags to the build command.
 * ``configure_step`` - Customize the build step by adding compiler-specific flags to the build command.
-* ``test_step`` - Customize the build step by adding compiler-specific flags to the build command.
+* ``install_step`` - Customize the build step by adding compiler-specific flags to the build command.
 
 .. _IntelBase:
 
@@ -261,7 +278,11 @@ Customised steps in ``IntelBase`` easyblock
 -------------------------------------------
 * ``build_step`` - Binary installation files, so no building.
 * ``configure_step`` - Configure: handle license file and clean home dir.
-* ``test_step`` - Configure: handle license file and clean home dir.
+* ``install_step`` - Actual installation
+
+        - create silent cfg file
+        - set environment parameters
+        - execute command
 
 .. _JAR:
 
@@ -307,7 +328,7 @@ easyconfig parameter       description                                         d
 Customised steps in ``MakeCp`` easyblock
 ----------------------------------------
 * ``configure_step`` - Configure build if required
-* ``test_step`` - Configure build if required
+* ``install_step`` - Install by copying specified files and directories.
 
 .. _PackedBinary:
 
@@ -328,6 +349,10 @@ easyconfig parameter   description                                              
 ``staged_install``     Perform staged installation via subdirectory of build directory   ``False``
 ``install_cmd``        Install command to be used.                                       ``None``
 ====================   ===============================================================   =============
+
+Customised steps in ``PackedBinary`` easyblock
+----------------------------------------------
+* ``install_step`` - Copy all unpacked source directories to install directory, one-by-one.
 
 .. _PerlModule:
 
@@ -352,7 +377,7 @@ Customised steps in ``PerlModule`` easyblock
 --------------------------------------------
 * ``build_step`` - No separate build procedure for Perl modules.
 * ``configure_step`` - No separate configuration for Perl modules.
-* ``test_step`` - No separate (standard) test procedure for Perl modules.
+* ``install_step`` - Run install procedure for Perl modules.
 
 .. _PythonPackage:
 
@@ -377,7 +402,7 @@ Customised steps in ``PythonPackage`` easyblock
 -----------------------------------------------
 * ``build_step`` - Build Python package using setup.py
 * ``configure_step`` - Configure Python package build.
-* ``test_step`` - Test the built Python package.
+* ``install_step`` - Install Python package to a custom path using setup.py
 
 .. _RPackage:
 
@@ -401,7 +426,7 @@ Customised steps in ``RPackage`` easyblock
 ------------------------------------------
 * ``build_step`` - No separate build step for R packages.
 * ``configure_step`` - No configuration for installing R packages.
-* ``test_step`` - No configuration for installing R packages.
+* ``install_step`` - Install procedure for R packages.
 
 .. _Rpm:
 
@@ -431,7 +456,7 @@ easyconfig parameter   description                                              
 Customised steps in ``Rpm`` easyblock
 -------------------------------------
 * ``configure_step`` - Custom configuration procedure for RPMs: rebuild RPMs for relocation if required.
-* ``test_step`` - Custom configuration procedure for RPMs: rebuild RPMs for relocation if required.
+* ``install_step`` - Custom installation procedure for RPMs into a custom prefix.
 
 .. _RubyGem:
 
@@ -455,7 +480,7 @@ Customised steps in ``RubyGem`` easyblock
 -----------------------------------------
 * ``build_step`` - No separate build procedure for Ruby Gems.
 * ``configure_step`` - No separate configuration for Ruby Gems.
-* ``test_step`` - No separate (standard) test procedure for Ruby Gems.
+* ``install_step`` - Install Ruby Gems using gem package manager
 
 .. _Tarball:
 
@@ -471,7 +496,7 @@ Customised steps in ``Tarball`` easyblock
 -----------------------------------------
 * ``build_step`` - Dummy build method: nothing to build
 * ``configure_step`` - Dummy configure method
-* ``test_step`` - Dummy configure method
+* ``install_step`` - Install by copying from specified source directory (or 'start_dir' if not specified).
 
 .. _Toolchain:
 
@@ -543,5 +568,5 @@ Customised steps in ``VersionIndependentPythonPackage`` easyblock
 -----------------------------------------------------------------
 * ``build_step`` - No build procedure.
 * ``configure_step`` - No build procedure.
-* ``test_step`` - No build procedure.
+* ``install_step`` - Custom install procedure to skip selection of python package versions.
 
