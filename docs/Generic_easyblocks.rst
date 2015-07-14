@@ -3,7 +3,7 @@ Overview of generic easyblocks
 ==============================
 
 .. contents::
-    :depth: 2
+    :depth: 1
     :local:
     :backlinks: top
 
